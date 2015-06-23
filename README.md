@@ -13,7 +13,7 @@ medio del micrófono.
 Firefox y Google-Chrome.
 
 - .5 puntos. Documentación
--
+
 - 1 puntos. Módulo de keylogger.
 
 - 1 puntos. Implementación de canales cifrados
