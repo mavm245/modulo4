@@ -4,7 +4,8 @@ Troy de acceso remoto
 Firefox y Google-Chrome.
 
 - .5 puntos. Módulo para captura de pantalla.
-
+            * Se necesita instalar:
+                    apt-get install imagemagick
 - .5 puntos. Módulo captura de video por medio de la cámara web o captura de sonido por
 medio del micrófono.
        * Se necesita instalar:
