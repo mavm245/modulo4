@@ -5,11 +5,14 @@ Firefox y Google-Chrome.
 
 - .5 puntos. Módulo para captura de pantalla.
        * Se necesita instalar:
-                    apt-get install imagemagick
+                    apt-get install imagemagick (ubuntu)
+
 - .5 puntos. Módulo captura de video por medio de la cámara web o captura de sonido por
 medio del micrófono.
        * Se necesita instalar:
                     apt-get install streamer
+                    apt-get install alsa-utils(ubuntu)
+
 - .5 puntos. Módulo de obtención de contraseñas almacenadas en los exploradores Mozilla
 Firefox y Google-Chrome.
 
