@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"Recovers your Firefox or Thunderbird passwords"
+"Recovers your Firefox passwords"
 
 import base64
 from collections import namedtuple
@@ -7,7 +7,6 @@ from ConfigParser import RawConfigParser, NoOptionError
 from ctypes import (Structure, CDLL, byref, cast, string_at, c_void_p, 
     c_uint, c_ubyte, c_char_p)
 from getpass import getpass
-import logging
 from optparse import OptionParser
 import os
 try:
@@ -20,13 +19,23 @@ import sys
 
 LOGLEVEL_DEFAULT = 'warn'
 
-log = logging.getLogger()
 PWDECRYPT = 'pwdecrypt'
 
 SITEFIELDS = ['id', 'hostname', 'httpRealm', 'formSubmitURL', 'usernameField', 'passwordField', 'encryptedUsername', 'encryptedPassword', 'guid', 'encType', 'plain_username', 'plain_password' ]
 Site = namedtuple('FirefoxSite', SITEFIELDS)
 '''The format of the SQLite database is:
-(id                 INTEGER PRIMARY KEY,hostname           TEXT NOT NULL,httpRealm          TEXT,formSubmitURL      TEXT,usernameField      TEXT NOT NULL,passwordField      TEXT NOT NULL,encryptedUsername  TEXT NOT NULL,encryptedPassword  TEXT NOT NULL,guid               TEXT,encType            INTEGER);
+(
+ id                 INTEGER PRIMARY KEY,
+ hostname           TEXT NOT NULL,
+ httpRealm          TEXT,
+ formSubmitURL      TEXT,
+ usernameField      TEXT NOT NULL,
+ passwordField      TEXT NOT NULL,
+ encryptedUsername  TEXT NOT NULL,
+ encryptedPassword  TEXT NOT NULL,
+ guid               TEXT,
+ encType            INTEGER
+);
 '''
 
 
@@ -107,22 +116,12 @@ def decrypt(encrypted_string, firefox_profile_directory, password = None):
     "pwdecrypt" tool which you might have packaged. Otherwise, you 
     need to build it yourself.'''
     
-    log = logging.getLogger('firefoxpasswd.decrypt')
-    execute = [PWDECRYPT, '-d', firefox_profile_directory]
-    if password:
-        execute.extend(['-p', password])
     process = Popen(execute,
                     stdin=PIPE, stdout=PIPE, stderr=PIPE)
     output, error = process.communicate(encrypted_string)
     
-    log.debug('Sent: %s', encrypted_string)
-    log.debug('Got: %s', output)
-    
     NEEDLE = 'Decrypted: "' # This string is prepended to the decrypted password if found
     output = output.strip()
-    if output == encrypted_string:
-        log.error('Password was not correct. Please try again without a '
-                   'password or with the correct one')
     
     index = output.index(NEEDLE) + len(NEEDLE)
     password = output[index:-1] # And we strip the final quotation mark
@@ -138,12 +137,9 @@ class NativeDecryptor(object):
         password. If you don't give a password but one is needed, you 
         will be prompted by getpass to provide one.'''
         self.directory = directory
-        self.log = logging.getLogger('NativeDecryptor')
-        self.log.debug('Trying to work on %s', directory)
         
         self.libnss = CDLL('libnss3.so')
-        if self.libnss.NSS_Init(directory) != 0:
-            self.log.error('Could not initialize NSS')
+        self.libnss.NSS_Init(directory)
 
         # Initialize to the empty string, not None, because the password
         # function expects rather an empty string
@@ -216,7 +212,6 @@ class NativeDecryptor(object):
         cstring.data  = cast( c_char_p( base64.b64decode(string)), c_void_p)
         cstring.len = len(base64.b64decode(string))
         #if libnss.PK11SDR_Decrypt (byref (cstring), byref (dectext), byref (pwdata)) == -1:
-        self.log.debug('Trying to decrypt %s (error: %s)', string, libnss.PORT_GetError())
         if libnss.PK11SDR_Decrypt (byref (cstring), byref (dectext)) == -1:
             error = libnss.PORT_GetError()
             libnss.PR_ErrorToString.restype = c_char_p
@@ -258,17 +253,12 @@ def get_firefox_sites_with_decrypted_passwords(firefox_profile_directory = None,
         plain_user = decrypt(site.encryptedUsername, firefox_profile_directory, password)
         plain_password = decrypt(site.encryptedPassword, firefox_profile_directory, password)
         site = site._replace(plain_username=plain_user, plain_password=plain_password)
-        log.debug("Dealing with Site: %r", site)
-        log.info("user: %s, passwd: %s", plain_user, plain_password)
         yield site
 
-def main_decryptor(firefox_profile_directory, password, thunderbird=False):
-    'Main function to get Firefox and Thunderbird passwords'
+def main_decryptor(firefox_profile_directory, password):
+    'Main function to get Firefox passwords'
     if not firefox_profile_directory:
-        if thunderbird:
-            dir = '~/.thunderbird/'
-        else:
-            dir = '~/.mozilla/firefox'
+        dir = '~/.mozilla/firefox'
         firefox_profile_directory = get_default_firefox_profile_directory(dir)
 
     decryptor = NativeDecryptor(firefox_profile_directory, password)
@@ -282,8 +272,6 @@ if __name__ == "__main__":
                   help="the Firefox profile directory to use")
     parser.add_option("-p", "--password", default=None,
                   help="the master password for the Firefox profile")
-    parser.add_option("-l", "--loglevel", default=LOGLEVEL_DEFAULT,
-                  help="the level of logging detail [debug, info, warn, critical, error]")
     parser.add_option("-t", "--thunderbird", default=False, action='store_true',
                   help="by default we try to find the Firefox default profile."
                   " But you can as well ask for Thunderbird's default profile."
@@ -300,16 +288,10 @@ if __name__ == "__main__":
                     "protected database though.")
     options, args = parser.parse_args()
     
-    loglevel = {'debug': logging.DEBUG, 'info': logging.INFO,
-                'warn': logging.WARN, 'critical':logging.CRITICAL,
-                'error': logging.ERROR}.get(options.loglevel, LOGLEVEL_DEFAULT)
-    logging.basicConfig(level=loglevel)
-    log = logging.getLogger()
-    
     password = options.password
 
     if not options.external:
-        sys.exit (main_decryptor(options.directory, password, thunderbird=options.thunderbird))
+        sys.exit (main_decryptor(options.directory, password))
     else:
         for site in get_firefox_sites_with_decrypted_passwords(options.directory, password):
             print site
