@@ -15,7 +15,7 @@ medio del micrófono.
             
              apt-get install streamer
 
-                apt-get install alsa-utils(ubuntu)
+             apt-get install alsa-utils(ubuntu)
 
 
 - .5 puntos. Módulo de obtención de contraseñas almacenadas en los exploradores Mozilla
