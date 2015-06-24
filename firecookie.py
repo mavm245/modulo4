@@ -2,11 +2,13 @@
 "Recupera las Cookies de Firefox"
 
 import os
+from collections import namedtuple
+from ConfigParser import RawConfigParser, NoOptionError
 try:
 	from sqlite3 import dbapi2 as sqlite
 except ImportError:
 	from pysqlite2 import dbapi2 as sqlite
-from subprocess import Popenm CalledProcessError, PIPE
+from subprocess import Popen, CalledProcessError, PIPE
 import sys
 
 SITEFIELDS = ['baseDomain','value']
@@ -15,12 +17,12 @@ Site = namedtuple('FirefoxSite',SITEFIELDS)
 def get_default_firefox_profile_directory(dir='~/.mozilla/firefox'):
 	'Regresa el nombre del directorio del perfil por defecto'
 
-	profile_dir = os.path.expanduser(dir)
+	profiles_dir = os.path.expanduser(dir)
 	profile_path = None
 
 	cp = RawConfigParser()
 	cp.read(os.path.join(profiles_dir,"profiles.ini"))
-	for section on cp.sections():
+	for section in cp.sections():
 		if not cp.has_option(section, "Path"):
 			continue
 		
@@ -43,7 +45,7 @@ def get_cookies_sites(firefox_profile_dir=None):
 		cursor.execute(query)
 
 		for site in map(Site._make, cursor.fetchall()):
-			yield site:
+			yield site
 	finally:
 		connection.close()
 
@@ -53,4 +55,8 @@ def main_cookies():
 	dir = '~/.mozilla/firefox'
 	firefox_profile_directory = get_default_firefox_profile_directory(dir)
 
-	for site in 
+	for site in firefox_profile_directory:
+		print site
+
+if __name__ == "__main__" :
+	sys.exit (main_cookies())
