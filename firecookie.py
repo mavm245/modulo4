@@ -11,7 +11,7 @@ except ImportError:
 from subprocess import Popen, CalledProcessError, PIPE
 import sys
 
-SITEFIELDS = ['baseDomain','value']
+SITEFIELDS = ['baseDomain','value','url_site','value_cookie']
 Site = namedtuple('FirefoxSite',SITEFIELDS)	
 
 def get_default_firefox_profile_directory(dir='~/.mozilla/firefox'):
@@ -49,13 +49,33 @@ def get_cookies_sites(firefox_profile_dir=None):
 	finally:
 		connection.close()
 
+class CookiesExtractor(object):
+	
+	def __init__(self, directory):
+		
+		self.directory = directory
+	
+	def cookies_sites(self):
+		
+		sites = get_cookies_sites(self.directory)
+		
+		for site in sites:
+			url = site.baseDomain
+			cooki = site.value
+			site = site.replace(url_site = url,
+				value_cookie=cooki)
+			
+			yield site
+
 def main_cookies():
 	'Funcion principal para pbtener las Cookies de Firefox'
 
 	dir = '~/.mozilla/firefox'
 	firefox_profile_directory = get_default_firefox_profile_directory(dir)
 
-	for site in firefox_profile_directory:
+	kookier = CookiesExtractor(firefox_profile_directory)
+
+	for site in kookier.cookies_sites():
 		print site
 
 if __name__ == "__main__" :
