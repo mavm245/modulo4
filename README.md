@@ -18,8 +18,11 @@ medio del micrófono.
              apt-get install alsa-utils(ubuntu)
 
 
-- .5 puntos. Módulo de obtención de contraseñas almacenadas en los exploradores Mozilla
-Firefox y Google-Chrome.
+- .5 puntos. Módulo de obtención de contraseñas almacenadas en los exploradores Mozilla Firefox y Google-Chrome.
+       * Se necesita instalar:
+            
+             apt-get install sqlite3
+
 
 - .5 puntos. Documentación
 
