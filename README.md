@@ -35,6 +35,11 @@ medio del micrófono.
 - 1.5 puntos. Módulo de puerta trasera (tráfico cifrado).
 
 - 2 puntos. Módulo de sesión de meterpreter.
+       * Se necesita instalar:
+                
+           kali 
+
+
 
 - 2 puntos. Integración cliente/servidor
 
