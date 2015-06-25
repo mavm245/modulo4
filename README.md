@@ -16,6 +16,12 @@ medio del micrófono.
              apt-get install streamer
 
              apt-get install alsa-utils(ubuntu)
+             
+             apt-get install alsa-oss
+             
+       *Habilitar modulo:
+       
+             modprobe snd_pcm_oss
 
 
 - .5 puntos. Módulo de obtención de contraseñas almacenadas en los exploradores Mozilla Firefox y Google-Chrome.
