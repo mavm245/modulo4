@@ -2,7 +2,7 @@
 Troy de acceso remoto
       Ip para equipos
             
-            VICTIMA 192.168.222.4  Puerto: 6660
+            VICTIMA 192.168.222.4  Puerto: 6660 (yo queria el 666 :( )
             ATACANTE 192.168.222.9
             C&C   192.168.222.13
 
