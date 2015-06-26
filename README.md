@@ -57,3 +57,4 @@ medio del micrófono.
 - 2 puntos. Integración cliente/servidor
 
 - 2 puntos. Ocultamiento de procesos y conexiones establecidas.
+            apt-get install linux-headers-$(uname -r)
