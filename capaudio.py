@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 ###############################
 #  Modulo captura de audio    #
 #  Proyecto de Modulo 4       #
@@ -7,7 +9,6 @@
 #      mvasquez               #
 ###############################
 
-#!/usr/bin/python
 import os
 import datetime
 import sys
