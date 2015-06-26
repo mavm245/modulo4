@@ -41,16 +41,22 @@ medio del micrófono.
 
 - 1 puntos. Módulo de keylogger.
 
-- 1 puntos. Implementación de canales cifrados
+- 1 puntos. Implementación de canales cifrados.
+
+       * Se necesita instalar:
+            
              apt-get install python-dev 
-             modulo pyCrypto y paramiko
+             
+       *Habilitar modulo:
+       
+             pyCrypto y paramiko
 
 - 1.5 puntos. Módulo de puerta trasera (tráfico cifrado).
 
 - 2 puntos. Módulo de sesión de meterpreter.
        * Se necesita instalar:
                 
-           kali 
+              kali 
 
 
 
