@@ -13,7 +13,7 @@ Firefox y Google-Chrome.
 - .5 puntos. Módulo para captura de pantalla.
        * Se necesita instalar:
                 
-            apt-get install imagemagick (ubuntu)
+            apt-get install imagemagick
 
 
 - .5 puntos. Módulo captura de video por medio de la cámara web o captura de sonido por
@@ -22,7 +22,7 @@ medio del micrófono.
             
              apt-get install streamer
 
-             apt-get install alsa-utils(ubuntu)
+             apt-get install alsa-utils
              
              apt-get install alsa-oss
              
