@@ -21,7 +21,6 @@ Este rootkit puede ocultar procesos y elevar privilegios como root
  # tools/rtcmd.py modulo4root /bin/bash
 
 #Referencias:
-
- ~https://github.com/ivyl/rootkit
- ~http://www.cyberciti.biz/tips/compiling-linux-kernel-module.html
- ~https://github.com/mrrrgn/simple-rootkit
+  ~https://github.com/ivyl/rootkit
+  ~http://www.cyberciti.biz/tips/compiling-linux-kernel-module.html
+  ~https://github.com/mrrrgn/simple-rootkit
