@@ -17,6 +17,7 @@ import sys
 
 arg = sys.argv[1]
 
+#una captura cada tiempo
 if arg == '-t':
 	y = int(sys.argv[2])
 	while(true):
@@ -27,7 +28,7 @@ if arg == '-t':
 		os.system(comando)
 		os.system("rm archivo.xwd")
 		time.sleep(y)
-
+#numero de capturas cada segundo
 if arg == '-n':
         y = int(sys.argv[2])
         for i in range(1,y):
@@ -38,7 +39,7 @@ if arg == '-n':
                 os.system(comando)
                 os.system("rm archivo.xwd")
 		time.sleep(1)
-
+#menu ayuda
 if arg == '-h':
 	print "\nOpciones disponibles"
 	print "-n	Numero de capturas cada segundo"
