@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 ###############################
 # Modulo captura de pantalla  #
 # Proyecto de Modulo 4        #
@@ -8,7 +10,6 @@
 #			      #
 ###############################
 
-#!/usr/bin/python
 import os
 import datetime
 import time
