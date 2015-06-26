@@ -1,5 +1,12 @@
-# modulo4
+# Modulo4
 Troy de acceso remoto
+      Ip para equipos
+            
+            VICTIMA 192.168.222.4  Puerto: 6660
+            ATACANTE 192.168.222.9
+            C&C   192.168.222.13
+
+#Requerimientos
 - .5 puntos. Módulo de obtención de cookies y variables de sesión de los exploradores Mozilla
 Firefox y Google-Chrome.
 
