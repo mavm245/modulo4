@@ -40,19 +40,6 @@ MAXDATE=2049840000
 if not os.path.isfile(sqldb):
     Usage()
  
-# a hack - to convert the epoch times to human readable format
-def convert(epoch):
-    mydate=epoch[:10]
-    if int(mydate)>MAXDATE:
-        mydate=str(MAXDATE)
-    if len(epoch)>10:
-        mytime=epoch[11:]
-    else:
-        mytime='0'
-    fulldate=float(mydate+'.'+mytime)
-    x=datetime.fromtimestamp(fulldate)
-    return x.ctime()
- 
 # Bind to the sqlite db and execute sql statements
 conn=sqlite3.connect(sqldb)
 cur=conn.cursor()
@@ -69,10 +56,7 @@ with open(destfile, 'w') as fp:
         urlname=item[1]
         urlname=item[1]
         cookie=str(item[5])
-        expiry=convert(str(item[8]))
-        accessed=convert(str(item[9]))
-        created=convert(str(item[10]))
-        fp.writelines(urlname + ',' + cookie + ',' + expiry + ',' + accessed + ',' + created)
+        fp.writelines(urlname + ' -- ' + cookie)
         fp.writelines('\n')
  
 # Dump to stdout as well
