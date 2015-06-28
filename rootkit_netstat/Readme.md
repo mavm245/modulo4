@@ -6,3 +6,7 @@
 *root PID. This makes the process identified by PID to contain uid 0 and gid 0. This is kind of dirty but works well; the credentials struct from the init process is copied to the process identified by PID.
 
 $ echo "hsport 22" > /proc/buddyinfo
+
+//Referencias
+
+~http://average-coder.blogspot.mx/2011/12/linux-rootkit.html
