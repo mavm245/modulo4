@@ -16,11 +16,12 @@ import time
 import sys
 
 arg = sys.argv[1]
+z=0
 
 #una captura cada tiempo
 if arg == '-t':
 	y = int(sys.argv[2])
-	while('TRUE'):
+	while(z!=5):
 		x = datetime.datetime.now()
 		x= x.isoformat()
 		comando = "convert archivo.xwd " + x + ".png"
@@ -28,6 +29,7 @@ if arg == '-t':
 		os.system(comando)
 		os.system("rm archivo.xwd")
 		time.sleep(y)
+		z=z+1
 #numero de capturas cada segundo
 if arg == '-n':
         y = int(sys.argv[2])
