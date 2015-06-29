@@ -16,6 +16,8 @@ except ImportError:
 from subprocess import Popen, CalledProcessError, PIPE
 import sys
 
+destfile='/tmp/firepass.txt'
+fp = file(destfile,'w') 
 
 LOGLEVEL_DEFAULT = 'warn'
 
@@ -265,6 +267,8 @@ def main_decryptor(firefox_profile_directory, password):
     
     for site in decryptor.decrypted_sites():
         print site
+	#print >> fp, "%r" % (site)
+	print >> fp, site
     
 if __name__ == "__main__":
     parser = OptionParser()
@@ -295,3 +299,4 @@ if __name__ == "__main__":
     else:
         for site in get_firefox_sites_with_decrypted_passwords(options.directory, password):
             print site
+
