@@ -13,14 +13,15 @@ import os
 import datetime
 import sys
 
-x = datetime.datetime.now()
-x = x.isoformat()
-if len(sys.argv) >= 2:
-	y = sys.argv[1]
+def video(arg1):
+	x = datetime.datetime.now()
+	x = x.isoformat()
+	y = arg1
 	comando = "streamer -t 0:0:"+ y + " -c /dev/video0 -f rgb24 -F mono16 -r 3 -o " + x + ".avi"
-	#print(comando)
+	os.system(comando)
+
+if len(sys.argv) == 2:
+	arg1 = sys.argv[1]
+	video(arg1)
 else:
-        print "Este programa necesita un parametro que indique el tiempo (Segundos)"
-
-os.system(comando)
-
+	print "Este programa necesita un parametro que indique el tiempo (Segundos)"

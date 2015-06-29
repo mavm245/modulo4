@@ -13,14 +13,15 @@ import os
 import datetime
 import sys
 
-x = datetime.datetime.now()
-x = x.isoformat()
-if len(sys.argv) >= 2:
-	y = sys.argv[1]
+def audio(arg1):
+	x = datetime.datetime.now()
+	x = x.isoformat()
+	y = arg1
 	comando = "arecord -d " + y +" -f cd -t wav "+ x + ".wav"
-	#print(comando)
+	os.system(comando)
+
+if len(sys.argv) == 2:
+	arg1 = sys.argv[1]
+	audio(arg1)
 else:
         print "Este programa necesita un parametro"
-
-os.system(comando)
-

@@ -15,37 +15,40 @@ import datetime
 import time
 import sys
 
-arg = sys.argv[1]
-z=0
+arg1 = sys.argv[1]
+arg2 = sys.argv[2]
 
-#una captura cada tiempo
-if arg == '-t':
-	y = int(sys.argv[2])
-	while(z!=5):
-		x = datetime.datetime.now()
-		x= x.isoformat()
-		comando = "convert archivo.xwd " + x + ".png"
-		os.system("xwd -root -screen > archivo.xwd")
-		os.system(comando)
-		os.system("rm archivo.xwd")
-		time.sleep(y)
-		z=z+1
-#numero de capturas cada segundo
-if arg == '-n':
-        y = int(sys.argv[2])
-        for i in range(0,y):
-                x = datetime.datetime.now()
-                x= x.isoformat()
-                comando = "convert archivo.xwd " + x + ".png"
-                os.system("xwd -root -screen > archivo.xwd")
-                os.system(comando)
-                os.system("rm archivo.xwd")
-		time.sleep(1)
-#menu ayuda
-if arg == '-h':
-	print "\nOpciones disponibles"
-	print "-n	Numero de capturas cada segundo"
-	print "Ejemplo: captura.py -n 5 >>>> 5 capturas cada segundo\n"
-        print "-t 	Tomar una captura cada cierto tiempo(Segundos)"
-        print "Ejemplo: captura.py -t 5 >>>> 1 captura cada 5 segundos"
+def tiempo(arg1,arg2):
+	z=0
+	#una captura cada tiempo
+	if arg1 == '-t':
+		y = int(arg2)
+		while(z!=5):
+			x = datetime.datetime.now()
+			x= x.isoformat()
+			comando = "convert archivo.xwd " + x + ".png"
+			os.system("xwd -root -screen > archivo.xwd")
+			os.system(comando)
+			os.system("rm archivo.xwd")
+			time.sleep(y)
+			z=z+1
+	#numero de capturas cada segundo
+	if arg1 == '-n':
+		y = int(arg2)
+		for i in range(0,y):
+			x = datetime.datetime.now()
+			x= x.isoformat()
+			comando = "convert archivo.xwd " + x + ".png"
+			os.system("xwd -root -screen > archivo.xwd")
+			os.system(comando)
+			os.system("rm archivo.xwd")
+			time.sleep(1)
+	#menu ayuda
+	if arg1 == '-h':
+		print "\nOpciones disponibles"
+		print "-n	Numero de capturas cada segundo"
+		print "Ejemplo: captura.py -n 5 >>>> 5 capturas cada segundo\n"
+		print "-t 	Tomar una captura cada cierto tiempo(Segundos)"
+		print "Ejemplo: captura.py -t 5 >>>> 1 captura cada 5 segundos"
 
+tiempo(arg1,arg2)
