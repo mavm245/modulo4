@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 ###############################
 # Modulo captura   keylogger  #
 # Proyecto de Modulo 4        #
