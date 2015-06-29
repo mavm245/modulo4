@@ -10,3 +10,5 @@ $ echo "hsport 22" > /proc/buddyinfo
 //Referencias
 
 ~http://average-coder.blogspot.mx/2011/12/linux-rootkit.html
+~http://commons.oreilly.com/wiki/index.php/Network_Security_Tools/Modifying_and_Hacking_Security_Tools/Fun_with_Linux_Kernel_Modules
+~https://books.google.com.mx/books?id=RSOrAQAAQBAJ&pg=PT190&lpg=PT190&dq=hiding+from+netstat&source=bl&ots=rO6C9sbYIH&sig=qoNiODe8nyXoVUh0qX4ZerQXFMo&hl=es-419&sa=X&ei=VnOQVaW7N4u2sAWzoIKwAQ&ved=0CFAQ6AEwBg#v=onepage&q=hiding%20from%20netstat&f=false
