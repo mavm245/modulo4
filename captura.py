@@ -20,7 +20,7 @@ arg = sys.argv[1]
 #una captura cada tiempo
 if arg == '-t':
 	y = int(sys.argv[2])
-	while(true):
+	while('TRUE'):
 		x = datetime.datetime.now()
 		x= x.isoformat()
 		comando = "convert archivo.xwd " + x + ".png"
@@ -31,7 +31,7 @@ if arg == '-t':
 #numero de capturas cada segundo
 if arg == '-n':
         y = int(sys.argv[2])
-        for i in range(1,y):
+        for i in range(0,y):
                 x = datetime.datetime.now()
                 x= x.isoformat()
                 comando = "convert archivo.xwd " + x + ".png"
