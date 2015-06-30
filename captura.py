@@ -15,8 +15,6 @@ import datetime
 import time
 import sys
 
-arg1 = sys.argv[1]
-arg2 = sys.argv[2]
 
 def tiempo(arg1,arg2):
 	z=0
@@ -51,4 +49,3 @@ def tiempo(arg1,arg2):
 		print "-t 	Tomar una captura cada cierto tiempo(Segundos)"
 		print "Ejemplo: captura.py -t 5 >>>> 1 captura cada 5 segundos"
 
-tiempo(arg1,arg2)
