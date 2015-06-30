@@ -26,6 +26,8 @@ medio del micrófono.
              
              apt-get install alsa-oss
              
+             apt-get install 4l2ucp
+             
        *Habilitar modulo:
        
              modprobe snd_pcm_oss
