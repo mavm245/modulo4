@@ -1,5 +1,5 @@
 #Equipos involucrados dentro del laboratorio.
 
-	- **Victima** - *Servidor*
-	- **Atacante** - *Cliente*
-	- **C&C** - *Servidor*
+	- Victima - Servidor
+	- Atacante - Cliente
+	- C&C - Servidor
