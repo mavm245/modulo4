@@ -15,8 +15,8 @@ conn = context.wrap_socket(s)
 #El primero es la IP del servidor y el segundo el puerto de conexion
 
 try :
-    #conn.connect(("192.168.63.179", 6666))
-    conn.connect(("localhost", 6666))
+    conn.connect(("192.168.222.4", 6666))
+    #conn.connect(("localhost", 6666))
 except :
     print 'No se puede realizar la conexion'
     sys.exit()
