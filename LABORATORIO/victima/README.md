@@ -11,8 +11,8 @@ Este script se ejecutará del lado del cliente e instalará todas las dependenci
 
 	* Pasos que sigue el instalador:
 
-	* Se verifica que se cuente con el paquete necesario para la instalación (RAT-MANAVI.tar.gz), 
-	en caso de que no se cuente se descargara de un servidor malicioso.
+		* Se verifica que se cuente con el paquete necesario para la instalación (RAT-MANAVI.tar.gz), 
+		en caso de que no se cuente se descargara de un servidor malicioso.
 
 	* Se desempaqueta el archivo en el directorio especificado en el script.
 
