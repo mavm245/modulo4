@@ -13,5 +13,5 @@ Este script se ejecutará del lado del cliente e instalará todas las dependenci
 	* Contraseña:
 		manavi
 	
-	*Directorio creado para la recolección de informacion por parte del RAT:
+	* Directorio creado para la recolección de informacion por parte del RAT:
 		/home/user/manavi
