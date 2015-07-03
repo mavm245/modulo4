@@ -18,5 +18,6 @@ def audio(arg1):
 	x = x.isoformat()
 	y = arg1
 	comando = "arecord -d " + y +" -f cd -t wav "+ x + ".wav"
-	os.system(comando)
+	os.system(comando + "> /dev/null 2>&1")
 
+audio(sys.argv[1])
