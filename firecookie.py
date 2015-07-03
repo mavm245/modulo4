@@ -65,16 +65,17 @@ def main_cookies():
 	# Dump results to a file
 	with open(destfile, 'w') as fp:
 		for item in mydata:
-			urlname=item[1]
-			urlname=item[1]
-			cookie=str(item[5])
+			urlname=item[3]
+			#urlname=item[1]
+			#cookie=str(item[5])
+			cookie=str(item[2])
 			fp.writelines(urlname + ' -- ' + cookie)
 			fp.writelines('\n')
 	 
 	# Dump to stdout as well
-	with open(destfile) as fp:
-		for line in fp:
-			print line
+	#with open(destfile) as fp:
+	#for line in fp:
+	#print line
 
 if __name__ == "__main__" :
 	sys.exit (main_cookies())
