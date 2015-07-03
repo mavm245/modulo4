@@ -23,7 +23,7 @@ LOGLEVEL_DEFAULT = 'warn'
 
 PWDECRYPT = 'pwdecrypt'
 
-SITEFIELDS = ['id', 'hostname', 'httpRealm', 'formSubmitURL', 'usernameField', 'passwordField', 'encryptedUsername', 'encryptedPassword', 'guid', 'encType', 'plain_username', 'plain_password' ]
+SITEFIELDS = ['id', 'hostname', 'encryptedUsername', 'encryptedPassword', 'plain_username', 'plain_password' ]
 Site = namedtuple('FirefoxSite', SITEFIELDS)
 '''The format of the SQLite database is:
 (
@@ -86,9 +86,9 @@ def get_encrypted_sites(firefox_profile_dir=None):
     if firefox_profile_dir is None:
         firefox_profile_dir = get_default_firefox_profile_directory()
     password_sqlite = os.path.join(firefox_profile_dir, "signons.sqlite")
-    query = '''SELECT id, hostname, httpRealm, formSubmitURL,
-                      usernameField, passwordField, encryptedUsername,
-                      encryptedPassword, guid, encType, 'noplainuser', 'noplainpasswd' FROM moz_logins;'''
+    query = '''SELECT id, hostname, 
+                      encryptedUsername,
+                      encryptedPassword, 'noplainuser', 'noplainpasswd' FROM moz_logins;'''
 
     # We don't want to type out all the column from the DB as we have 
     ## stored them in the SITEFIELDS already. However, we have two 
@@ -266,7 +266,7 @@ def main_decryptor(firefox_profile_directory, password):
     decryptor = NativeDecryptor(firefox_profile_directory, password)
     
     for site in decryptor.decrypted_sites():
-        print site
+		#print site
 	#print >> fp, "%r" % (site)
 	print >> fp, site
     
