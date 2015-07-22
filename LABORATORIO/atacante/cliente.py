@@ -16,7 +16,6 @@ conn = context.wrap_socket(s)
 
 try :
     conn.connect(("192.168.222.4", 6666))
-    #conn.connect(("localhost", 6666))
 except :
     print 'No se puede realizar la conexion'
     sys.exit()
@@ -36,20 +35,20 @@ print "-------------------------------------------------------------------------
 while True:
     #Instanciamos una entrada de datos para que el cliente pueda enviar mensajes
     mensaje = raw_input("comando>> ")
- 
-    #Con la instancia del objeto servidor (s) y el metodo send, enviamos el mensaje introducido
-    conn.send(mensaje)
-    
+    print mensaje
     #Si por alguna razon el mensaje es close cerramos la conexion
     if mensaje == "close":
+	#Imprimimos la palabra Adios para cuando se cierre la conexion
+	print "Adios."
         break
-
-    recibido = conn.recv(2048);
-    if recibido != "":
+    else:
+        #Con la instancia del objeto servidor (s) y el metodo send, enviamos el mensaje introducido
+        conn.send(mensaje)
+        recibido = conn.read(1024);
+        #if recibido != "":
         print recibido 
- 
-#Imprimimos la palabra Adios para cuando se cierre la conexion
-print "Adios."
+        mensaje = ""
+        recibido = ""
  
 #Cerramos la instancia del objeto servidor
 conn.close()
