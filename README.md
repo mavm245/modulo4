@@ -6,6 +6,10 @@ Troy de acceso remoto
             ATACANTE 192.168.222.9
             C&C   192.168.222.13
 
+#Considerasiones
+	- A partir del directorio RAT-MANAVI se crea el paquete RAT-MANAVI.tar.gz que contiene todos los scripts de los modulos necesarios para que el RAT funcione correctamente.
+	Este paquete también se debe encontrar dentro del directorio victima/ perteneciente a LABORATORIO/
+
 #Requerimientos
 - .5 puntos. Módulo de obtención de cookies y variables de sesión de los exploradores Mozilla
 Firefox y Google-Chrome.
