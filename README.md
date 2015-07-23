@@ -9,7 +9,7 @@ Troy de acceso remoto
 #Considerasiones
 	- A partir del directorio RAT-MANAVI se crea el paquete RAT-MANAVI.tar.gz 
 	  que contiene todos los scripts de los modulos necesarios para que el 
-          RAT funcione correctamente.
+      RAT funcione correctamente.
 
 	- Este paquete también se debe encontrar dentro del directorio victima/ 
 	  perteneciente a LABORATORIO/
