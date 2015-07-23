@@ -111,7 +111,7 @@ then
 	echo "Agregando intercambio de llaves"
 	#ssh-keygen -q -b 4096 -t rsa -N '' -f $HOME/.ssh/id_rsa
 	cp -f ${RAT_DIR}RAT-MANAVI/id_rsa* $HOME/.ssh/
-	sshpass -p 'hola123,' ssh-copy-id -i $HOME/.ssh/id_rsa.pub manavi@192.168.222.9
+	sshpass -p ${CLIENT_PASS} ssh-copy-id -i $HOME/.ssh/id_rsa.pub ${RAT_USER}@${CLIENT_IP}
 	echo "Finalizo el intercambio de llaves."
 else
 	echo 'Ya os podeis conectar sin contraseña.'
