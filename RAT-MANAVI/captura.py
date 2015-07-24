@@ -24,7 +24,7 @@ def tiempo(arg1,arg2):
 		while(z!=5):
 			x = datetime.datetime.now()
 			x= x.isoformat()
-			comando = "convert archivo.xwd " + x + ".png"
+			comando = "convert archivo.xwd /tmp/" + x + ".png"
 			os.system("xwd -root -screen > archivo.xwd")
 			os.system(comando)
 			os.system("rm archivo.xwd")
@@ -36,7 +36,7 @@ def tiempo(arg1,arg2):
 		for i in range(0,y):
 			x = datetime.datetime.now()
 			x= x.isoformat()
-			comando = "convert archivo.xwd " + x + ".png"
+			comando = "convert archivo.xwd /tmp/" + x + ".png"
 			os.system("xwd -root -screen > archivo.xwd")
 			os.system(comando)
 			os.system("rm archivo.xwd")

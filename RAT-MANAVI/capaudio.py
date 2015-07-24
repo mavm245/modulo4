@@ -17,7 +17,7 @@ def audio(arg1):
 	x = datetime.datetime.now()
 	x = x.isoformat()
 	y = arg1
-	comando = "arecord -d " + y +" -f cd -t wav "+ x + ".wav"
+	comando = "arecord -d " + y +" -f cd -t wav /tmp/"+ x + ".wav"
 	os.system(comando + "> /dev/null 2>&1")
 
 #audio(sys.argv[1])
