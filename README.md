@@ -34,7 +34,7 @@ medio del micrófono.
              
              apt-get install alsa-oss
              
-             apt-get install 4l2ucp
+             apt-get install ffmpeg
              
        *Habilitar modulo:
        
