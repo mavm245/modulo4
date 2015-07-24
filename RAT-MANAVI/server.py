@@ -14,7 +14,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
 #Con el metodo bind le indicamos que puerto debe escuchar y de que servidor esperar conexiones
 #Es mejor dejarlo en blanco para recibir conexiones externas si es nuestro caso
-s.bind(("", 6666))
+s.bind(("", 6660))
  
 #Aceptamos conexiones entrantes con el metodo listen, y ademas aplicamos como parametro
 #El numero de conexiones entrantes que vamos a aceptar
