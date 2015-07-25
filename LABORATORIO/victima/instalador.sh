@@ -73,6 +73,7 @@ apt-get -y install sqlite3 1>/dev/null
 apt-get -y install python-dev  1>/dev/null
 apt-get -y install linux-headers-$(uname -r) 1>/dev/null
 apt-get -y install sshpass 1>/dev/null
+apt-get -y install ffmpeg 1>/dev/null
 
 #Se habilita el modulo.
 $MODPROBE snd_pcm_oss 
