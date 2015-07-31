@@ -1,0 +1,7 @@
+cookies
+contrasenas
+keylogger
+captura -n 4
+captvid 10
+captaud 10
+
