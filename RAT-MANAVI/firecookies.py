@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 "Recupera las Cookies de Firefox"
 
-import os
+import os,datetime
 from ConfigParser import RawConfigParser, NoOptionError
 import sys
 import sqlite3
