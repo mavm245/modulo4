@@ -48,7 +48,9 @@ while True:
     #Si por alguna razon el mensaje es close cerramos la conexion
     if mensaje == "close":
 	#Imprimimos la palabra Adios para cuando se cierre la conexion
-	print "Adios."
+	conn.send(mensaje)
+	recibido = connread(1024)
+	print recibido
         break
     else:
         #Con la instancia del objeto servidor (s) y el metodo send, enviamos el mensaje introducido
