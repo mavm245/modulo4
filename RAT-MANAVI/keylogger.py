@@ -10,7 +10,7 @@
 #			      #
 ###############################
 #from sys import argv
-import sys
+import sys,os
 from time import sleep, time
 import ctypes as ct
 from ctypes.util import find_library
