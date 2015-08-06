@@ -48,7 +48,7 @@ while True:
     #Si por alguna razon el mensaje es close cerramos la conexion
     if mensaje == "close":
 	#Imprimimos la palabra Adios para cuando se cierre la conexion
-	conn.send(mensaje)
+	conn.send(mensaje.strip("\n"))
 	recibido = conn.read(1024)
 	print recibido
         break
