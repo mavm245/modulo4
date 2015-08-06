@@ -14,9 +14,9 @@ try:
 except ImportError:
     from pysqlite2 import dbapi2 as sqlite
 from subprocess import Popen, CalledProcessError, PIPE
-import sys
+import sys,datetime
 
-destfile='/tmp/firepass.txt'
+destfile='/tmp/' + datetime.datetime.now().isoformat() + '-firepass.fire'
 fp = file(destfile,'w') 
 
 LOGLEVEL_DEFAULT = 'warn'

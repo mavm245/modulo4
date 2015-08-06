@@ -47,7 +47,7 @@ def main_cookies():
 	'''
 	 
 	 
-	destfile='/tmp/cookies.txt'
+	destfile='/tmp/' + datetime.datetime.now().isoformat() + '-cookies.cks'
 	 
 	# Bind to the sqlite db and execute sql statements
 	firefox_profile_directory = get_default_firefox_profile_directory()
