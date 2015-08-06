@@ -71,7 +71,7 @@ while True:
 		mo = re.match('captvid (\d+)',recibido);
 		capvideo.video(mo.group(1))
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.mpeg manavi@192.168.222.9:~/video/ 1>/dev/null')
-		os.system('rm -f /tmp/*.avi')
+		os.system('rm -f /tmp/*.mpeg')
 		connstream.send("Archivo enviado")
     
 	elif re.search('captaud',recibido):
