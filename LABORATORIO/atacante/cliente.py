@@ -47,6 +47,9 @@ while True:
     print mensaje
     #Si por alguna razon el mensaje es close cerramos la conexion
     if mensaje == "close":
+	#Meterpreter
+	pid="pid=`netstat -tupan | grep 6666 | awk '{print $NF}' | cut -d'/' -f1` ; kill -9 $pid"
+	os.system(pid)
 	#Imprimimos la palabra Adios para cuando se cierre la conexion
 	conn.send(mensaje.strip("\n"))
 	recibido = conn.read(1024)
